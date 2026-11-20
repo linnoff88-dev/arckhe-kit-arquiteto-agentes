@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Kit del Arquitecto de Agentes — la especificación de tu agente en una página</title>
+<meta content="Siete plantillas rellenables que se convierten en la especificación de un agente de IA en una página, con un prompt de ensayo simulado. Kit del curso Arquitecto de Trabajo con IA (INEMA)." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<link href="https://inematds.github.io/kit-arquiteto-agentes/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/kit-arquiteto-agentes/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/kit-arquiteto-agentes/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../en/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="./" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<nav><div class="wrap">
+<a class="brand" href="#top"><span class="emoji">🏗️</span> Kit del Arquitecto de Agentes</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">Qué es</a>
+<a class="sec" href="#fluxo">Cómo funciona</a>
+<a class="sec" href="#guia">Guía de uso</a>
+<a class="sec" href="#exemplos">Ejemplos</a>
+<a class="sec" href="#roadmap">Hoja de ruta</a>
+<button aria-label="Cambiar tema" class="tgl" id="themeToggle" title="Cambiar tema">🌙</button>
+<a class="btn" href="https://github.com/inematds/kit-arquiteto-agentes" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div></nav>
+<header class="hero" id="top">
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">Kit de trabajo · las personas dirigen, los agentes ejecutan</span>
+<h1>La especificación de tu agente <span class="amb">en una página</span></h1>
+<p class="lead">Siete plantillas rellenables, en el navegador, sin instalar nada: ingresas un proceso real de la empresa y obtienes la página que un equipo de tecnología puede construir, además del prompt para ensayar el agente en un chat de IA.</p>
+<div class="cta">
+<a class="btn" href="../">Abrir el kit</a>
+<a class="btn ghost" href="#guia">Ver el paso a paso</a>
+</div>
+</div>
+<figure><img alt="Profesional frente a un portapapeles con el plano de un proceso" src="../assets/hero.jpg"/></figure>
+</div>
+</header>
+<section id="oque"><div class="wrap">
+<span class="chip">Qué es</span>
+<h2>El método del curso, listo para reutilizar en cada proceso</h2>
+<p class="sub">El curso <a href="https://inematds.github.io/pffia/" rel="noopener" target="_blank">Arquitecto de Trabajo con IA</a> enseña a rediseñar un proceso para que las personas dirijan y los agentes ejecuten. El kit es la parte reutilizable: los siete artefactos que produce el curso, en forma de formularios que generan la especificación automáticamente.</p>
+<div class="grid g3">
+<div class="card"><h3>🧩 Siete bloques, una página</h3><p>Proceso y resultado, mapa de seis eslabones, solicitud de horizonte largo, cadena de orquestación, inventario de contexto, ficha de calidad y matriz de permisos. Cuando lo completas, aparece la especificación armada.</p></div>
+<div class="card"><h3>🔎 Brechas detectadas al instante</h3><p>El kit señala lo que falta antes de que lo entregues: un resultado escrito como «hoja de cálculo enviada», sin punto de aprobación, permisos sin responsable, matriz poco estricta, contexto guardado en la cabeza de alguien.</p></div>
+<div class="card"><h3>🎭 Ensayo simulado</h3><p>Un botón arma el prompt con la especificación incluida. Pégalo en un chat de IA: este asume el papel de coordinador, respeta la matriz, aplica la ficha y devuelve lo que faltó.</p></div>
+</div>
+</div></section>
+<section id="fluxo"><div class="wrap">
+<span class="chip">Cómo funciona</span>
+<h2>Del proceso actual a la página que se construye</h2>
+<p class="sub">Todo se ejecuta en tu navegador. Los datos quedan en el almacenamiento local de la página; no se envían a ningún servicio. Puedes exportar un archivo para guardarlo o llevarlo a otra computadora.</p>
+<div class="flow">
+<span>Proceso y resultado</span><span class="arr">→</span>
+<span>Mapa de 6 eslabones</span><span class="arr">→</span>
+<span>Solicitud</span><span class="arr">→</span>
+<span>Cadena</span><span class="arr">→</span>
+<span>Inventario</span><span class="arr">→</span>
+<span>Ficha de calidad</span><span class="arr">→</span>
+<span>Matriz de permisos</span><span class="arr">→</span>
+<span>Especificación + ensayo</span>
+</div>
+<div class="grid g3" style="margin-top:26px">
+<div class="card"><span class="num">1</span><h3>Completar</h3><p>Cada bloque tiene una indicación de una línea con la regla del curso y campos con ejemplos reales. Las tablas (cadena, inventario, ficha, matriz) se amplían con un botón.</p></div>
+<div class="card"><span class="num">2</span><h3>Generar</h3><p>La especificación en texto aparece al final de la página y se actualiza con cada tecla. Cópiala, imprímela en PDF o descárgala como .md.</p></div>
+<div class="card"><span class="num">3</span><h3>Ensayar y corregir</h3><p>Describe un caso ficticio, copia el prompt de ensayo y pégalo en el chat. Cada brecha que aparezca se convierte en una nueva fila en algún bloque.</p></div>
+</div>
+</div></section>
+<section id="pre"><div class="wrap">
+<span class="chip">Requisitos previos</span>
+<h2>Un navegador y un proceso real</h2>
+<p class="sub">No hay nada que instalar. Para el ensayo simulado, sirve cualquier chat de IA que acepte textos largos (ChatGPT, Claude, Copilot).</p>
+<div class="grid g3">
+<div class="card"><h3>Navegador actualizado</h3><p>Chrome, Edge, Firefox o Safari. Funciona en el celular, pero las tablas se ven mejor en la computadora.</p><pre><span class="c"># abre la app</span>
+<span class="s">https://inematds.github.io/kit-arquiteto-agentes/</span></pre></div>
+<div class="card"><h3>Un proceso elegido</h3><p>Que se repita todas las semanas, involucre a más de una persona y cuyo error cueste dinero o clientes. Si tienes dudas, haz la lección 1 del curso.</p><pre><span class="c"># el curso, si quieres el método completo</span>
+<span class="s">https://inematds.github.io/pffia/</span></pre></div>
+<div class="card"><h3>Datos ficticios para el ensayo</h3><p>La especificación no tiene datos de clientes. El caso de la batería usa nombres y valores inventados: el chat es un servicio externo a la empresa.</p><pre><span class="c"># ejemplo de caso</span>
+Cliente Ferragens Sol, sem compra há 120 dias,
+último produto: 40 sacos de cimento em maio</pre></div>
+</div>
+</div></section>
+<section id="guia"><div class="wrap">
+<span class="chip">Guía de uso · paso a paso</span>
+<h2>De la hoja en blanco a la especificación ensayada</h2>
+<p class="sub">Una sesión de 30 a 60 minutos para el primer proceso. Los siguientes toman la mitad.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Abre el kit y carga el ejemplo de tu área</h3>
+<p>El selector «cargar ejemplo por área» completa los siete bloques con un caso completo: ventas (reactivación de clientes), salud (confirmación de consultas y glosas del seguro médico), contabilidad (solicitud de documentos y obligaciones) o abogacía (control de plazos). Al cargarlo, queda marcada el «área» y el kit empieza a señalar brechas específicas de ella, como datos de pacientes fuera de alcance en salud o plazos procesales que siempre requieren intervención humana en abogacía. Lee la especificación generada, luego «borrar» y marca tu área.</p>
+<pre><span class="k">abrir</span> <span class="s">https://inematds.github.io/kit-arquiteto-agentes/</span>  <span class="c"># → cargar ejemplo por área → leer la especificación → reiniciar → área: la tuya</span></pre>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Bloques 1 y 2: proceso, resultado y los seis eslabones</h3>
+<p>Escribe el resultado indicando qué pasa a saber o tener la persona del otro lado. En las decisiones, empieza cada línea con R (regla) o J (juicio). El kit avisa si el resultado quedó como «hoja de cálculo enviada» o si ninguna decisión tiene R/J.</p>
+<pre><span class="k">Decisões</span>
+R · cliente tem cobrança em aberto? não abordar
+J · vale exceção de prazo para este cliente?  <span class="c"># J se queda con la persona</span></pre>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Bloque 3: la solicitud de largo plazo</h3>
+<p>Las cinco piezas traducen el mapa: el objetivo es el resultado, el contexto y las restricciones provienen de las decisiones de reglas, el criterio es la verificación y la aprobación es donde entran las excepciones y los juicios. Si falta el criterio o la aprobación, el kit marca una brecha.</p>
+<pre><span class="k">Ponto de aprovação</span>
+Não envie nem registre nada. Apresente em lista, com o registro
+do que considerou e descartou, e espere meu ok.  <span class="c"># un error barato no se vuelve caro</span></pre>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Bloque 4: la cadena</h3>
+<p>Un especialista por tipo de trabajo, entre dos y cinco. Para cada uno, la herramienta y el sistema a los que tiene acceso, con la pregunta «¿tiene una puerta de servicio?» (sí, no, ?). Escribe las reglas del coordinador y lo que verifica el verificador.</p>
+<pre><span class="k">+ especialista</span>  <span class="c"># menos de 2 o más de 5 → el kit avisa</span>
+Levanta a lista e o histórico · buscar no cadastro · cadastro de clientes · porta: sim</pre>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Bloque 5: el inventario de contexto</h3>
+<p>Una línea por cada dato que necesita el agente. En la columna «accesible», elige el motivo cuando no lo sea: está en la cabeza de alguien, formato, sin puerta de servicio. Estas líneas aparecen en la especificación marcadas como trabajo previo al agente.</p>
+<pre><span class="k">+ linha</span>
+Catálogo atual · na cabeça do estoque · conversa · <span class="s">não: na cabeça de alguém</span> · Jorge</pre>
+</div></div>
+<div class="step"><div class="b">6</div><div>
+<h3>Bloques 6 y 7: calidad y permisos</h3>
+<p>Condiciones observables, cada una en una franja (tolerable, bloqueante, prohibido). Detenerse y llamar son acciones separadas, con un máximo de tres motivos para llamar. En la matriz, las siete acciones ya vienen con la escala estándar de la primera versión; ajústalas y asigna un responsable a cada fila que no sea «no puede».</p>
+<pre><span class="k">Matriz</span>  <span class="c"># leer/escribir: puede · modificar/enviar: con aprobación · comprar/borrar/aprobar: no puede</span>
+enviar · com aprovação · dono: vendedor da região</pre>
+</div></div>
+<div class="step"><div class="b">7</div><div>
+<h3>Generar, ensayar, corregir</h3>
+<p>Lee la lista de brechas debajo de la especificación y resuelve lo que puedas. Describe un caso ficticio, copia el prompt de ensayo y pégalo en el chat. Cada elemento de la lista de «lo que faltó» se convierte en una línea nueva en algún bloque. Pruébalo con tres casos: uno común, uno difícil y la excepción.</p>
+<pre><span class="k">copiar prompt com a especificação</span>  <span class="c"># pega en ChatGPT / Claude / Copilot</span>
+<span class="k">baixar .md</span> · <span class="k">imprimir / PDF</span> · <span class="k">exportar (.json)</span>  <span class="c"># guardar o llevar a otra computadora</span></pre>
+</div></div>
+</div></section>
+<section id="exemplos"><div class="wrap">
+<span class="chip">Ejemplos</span>
+<h2>El kit con el ejemplo cargado</h2>
+<p class="sub">Caso de reactivación de clientes de una distribuidora de materiales de construcción, el mismo hilo conductor del curso.</p>
+<div class="ex">
+<figure><img alt="Bloque 7, matriz de permisos, con las siete acciones y los responsables completados" src="../assets/ex1.jpg"/><figcaption>Bloque 7: la matriz de permisos con la escala de la primera versión y un responsable por fila.</figcaption></figure>
+<figure><img alt="Especificación en una página generada por el kit, con la lista de brechas" src="../assets/ex2.jpg"/><figcaption>La especificación generada y la lista de brechas: tres líneas de contexto que todavía están en la cabeza de alguien.</figcaption></figure>
+</div>
+</div></section>
+<section id="roadmap"><div class="wrap">
+<span class="chip">Hoja de ruta</span>
+<h2>Lo que hay y lo que viene</h2>
+<p class="sub">El kit es deliberadamente sencillo: una página, sin cuenta y sin nada que se ejecute fuera de tu navegador. Los cuadernos por profesión (salud, contabilidad, abogacía) usan los presets del kit como hilo conductor.</p>
+<div class="phase"><div class="tag">v1 · hoy</div><div class="d"><strong>Siete bloques, especificación, brechas y ensayo</strong><span>Guardado local, exportar/importar .json, copiar/imprimir/descargar .md, cuatro ejemplos por área (ventas, salud, contabilidad, abogacía) con reglas de brechas específicas, tema claro/oscuro.</span></div></div>
+<div class="phase"><div class="tag">v1.1</div><div class="d"><strong>Varios procesos en el mismo navegador</strong><span>Cambiar entre especificaciones guardadas (los diez procesos críticos de la lección 8) sin exportar ni importar.</span></div></div>
+<div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Batería de casos estructurada</strong><span>Tabla de casos con el resultado esperado y una columna de «aprobado/detenido/fallido» por ronda de ensayo.</span></div></div>
+</div></section>
+<footer>
+<div class="wrap">
+<div class="pill">HTML</div><div class="pill">CSS</div><div class="pill">JavaScript sin dependencias</div>
+<p style="margin-top:18px">Kit del Arquitecto de Agentes · derivado del curso <a href="https://inematds.github.io/pffia/">Arquitecto de Trabajo con IA</a> ·
+      <a href="https://github.com/inematds/kit-arquiteto-agentes">inematds/kit-arquiteto-agentes</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+  (function(){
+    var KEY='kit-arquiteto-agentes-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
