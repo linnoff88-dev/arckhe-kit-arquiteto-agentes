@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kit do Arquiteto de Agentes · INEMA</title>
+<title>Kit do Arquiteto de Agentes · ARCKHÉ</title>
 <meta name="description" content="Sete modelos preenchíveis que viram a especificaçêo de um agente de IA numa página: mapa de seis elos, pedido de longo horizonte, cadeia de orquestraçêo, inventário de contexto, ficha de qualidade, matriz de permissões e o prompt de ensaio simulado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
   .nav-in{max-width:1180px;margin:0 auto;padding:12px clamp(16px,4vw,40px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .logo{font-weight:700;color:var(--amb);text-decoration:none;font-size:15px}
   .sep{color:var(--line2)}
-  .inema{color:var(--sky);text-decoration:none;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em}
+  .ARCKHÉ{color:var(--sky);text-decoration:none;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em}
   .pro{background:linear-gradient(135deg,#f3d27a,#c9c9c9);color:#111;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:800;letter-spacing:.1em;text-decoration:none}
   .nav .grow{flex:1}
   .nav a.nl{color:var(--ink2);text-decoration:none;font-size:13px}
@@ -89,19 +89,19 @@
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="logo" href="#top">🏗️ Kit do Arquiteto de Agentes</a>
-  <span class="sep">|</span><a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
-  <span class="sep">-</span><a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  <span class="sep">|</span><a class="ARCKHÉ" href="https://ARCKHÉ AI" target="_blank" rel="noopener">ARCKHÉ AI</a>
+  <span class="sep">-</span><a class="pro" href="https://ARCKHÉ.pro" target="_blank" rel="noopener">PRO</a>
   <span class="grow"></span>
   <a class="nl" href="guia/">guia</a>
-  <a class="nl" href="https://inematds.github.io/pffia/" target="_blank" rel="noopener">curso</a>
+  <a class="nl" href="https://linnoff88-dev.github.io/arckhe-/" target="_blank" rel="noopener">curso</a>
   <button class="btn small" id="theme" type="button">🌙</button>
-  <a class="btn small" href="https://github.com/inematds/kit-arquiteto-agentes" target="_blank" rel="noopener">GitHub</a>
+  <a class="btn small" href="https://github.com/linnoff88-dev/kit-arquiteto-agentes" target="_blank" rel="noopener">GitHub</a>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
   <p class="kicker">Kit de trabalho · humanos dirigem, agentes executam</p>
   <h1>Sete modelos que viram a <em>especificaçêo do seu agente</em> numa página</h1>
-  <p class="lead">Preencha os blocos na ordem. Tudo salva sozinho no seu navegador, nada sai daqui. No fim, o kit monta a especificaçêo de uma página e o prompt de ensaio simulado para você colar num chat de IA. É o mesmo método do curso <a href="https://inematds.github.io/pffia/" target="_blank" rel="noopener">Arquiteto de Trabalho com IA</a>, pronto para reusar em cada novo processo.</p>
+  <p class="lead">Preencha os blocos na ordem. Tudo salva sozinho no seu navegador, nada sai daqui. No fim, o kit monta a especificaçêo de uma página e o prompt de ensaio simulado para você colar num chat de IA. É o mesmo método do curso <a href="https://linnoff88-dev.github.io/arckhe-/" target="_blank" rel="noopener">Arquiteto de Trabalho com IA</a>, pronto para reusar em cada novo processo.</p>
   <div class="toolbar">
     <button class="btn primary" type="button" data-go="#saida">gerar especificaçêo</button>
     <button class="btn" type="button" id="exportar">exportar (.json)</button>
@@ -212,7 +212,7 @@
   </main>
 </div>
 
-<footer><div class="wrap">Kit do Arquiteto de Agentes · <a href="guia/">guia de uso</a> · <a href="https://inematds.github.io/pffia/" target="_blank" rel="noopener">curso Arquiteto de Trabalho com IA</a> · <a href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a></div></footer>
+<footer><div class="wrap">Kit do Arquiteto de Agentes · <a href="guia/">guia de uso</a> · <a href="https://linnoff88-dev.github.io/arckhe-/" target="_blank" rel="noopener">curso Arquiteto de Trabalho com IA</a> · <a href="https://ARCKHÉ AI" target="_blank" rel="noopener">ARCKHÉ AI</a></div></footer>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -244,7 +244,7 @@ const inv=S.inv.filter(r=>line(r.oque)).map(r=>`  - ${r.oque} · onde: ${r.onde|
 const qual=S.qual.filter(r=>line(r.cond)).map(r=>`  - [${r.faixa||'bloqueante'}] ${r.cond}`).join('\n')||'  (a preencher)';
 const perm=S.perm.map(r=>`  - ${r.acao}: ${r.resp}${r.dono?' · dono: '+r.dono:' · dono: (a definir)'}${r.obs?' · '+r.obs:''}`).join('\n');
 return `ESPECIFICAÇêO DO AGENTE — ${t(f.processo)}
-gerada em ${new Date().toLocaleDateString('pt-BR')} · Kit do Arquiteto de Agentes (INEMA)
+gerada em ${new Date().toLocaleDateString('pt-BR')} · Kit do Arquiteto de Agentes (ARCKHÉ)
 
 1. PROCESSO E RESULTADO
   Processo: ${t(f.processo)}

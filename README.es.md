@@ -2,15 +2,15 @@
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
-Siete plantillas rellenables que se convierten en la **especificación de un agente de IA en una página**, más el prompt de ensayo simulado para probar la especificación en un chat de IA antes de construir nada. Kit de trabajo derivado del curso [Arquitecto de Trabajo con IA](https://inematds.github.io/pffia/) (INEMA.CLUB PRO).
+Siete plantillas rellenables que se convierten en la **especificación de un agente de IA en una página**, más el prompt de ensayo simulado para probar la especificación en un chat de IA antes de construir nada. Kit de trabajo derivado del curso [Arquitecto de Trabajo con IA](https://linnoff88-dev.github.io/arckhe-/) (ARCKHÉ AI PRO).
 
 ## 📖 Guía de uso
 
-Guía completa (landing + paso a paso): **https://inematds.github.io/kit-arquiteto-agentes/guia/es/**
+Guía completa (landing + paso a paso): **https://linnoff88-dev.github.io/arckhe-/guia/es/**
 
 ## Usar
 
-App: **https://inematds.github.io/kit-arquiteto-agentes/** (página única, sin instalación, todo se guarda en tu navegador).
+App: **https://linnoff88-dev.github.io/arckhe-/** (página única, sin instalación, todo se guarda en tu navegador).
 
 Los siete bloques:
 
@@ -24,7 +24,7 @@ Los siete bloques:
 
 Presets por área (botón «cargar ejemplo por área»): **ventas** (reactivación de clientes), **salud** (confirmación de consultas y denegaciones de cobertura), **contable** (solicitud de documentos y obligaciones) y **abogacía** (control de plazos). Al cargar, el área queda marcada y el kit empieza a señalar sus brechas específicas: datos de pacientes fuera de alcance en salud, «quien registra no aprueba» en contabilidad, plazos que siempre requieren llamar a una persona en abogacía.
 
-Cuadernos profesionales que usan estos presets: [salud](https://inematds.github.io/arquiteto-agentes-saude/) · [contable y financiero](https://inematds.github.io/arquiteto-agentes-contabil/) · [abogacía](https://inematds.github.io/arquiteto-agentes-advocacia/).
+Cuadernos profesionales que usan estos presets: [salud](https://linnoff88-dev.github.io/arckhe-/) · [contable y financiero](https://linnoff88-dev.github.io/arckhe-/) · [abogacía](https://linnoff88-dev.github.io/arckhe-/).
 
 Resultados: especificación en una página (copiar, imprimir/PDF, descargar `.md`), lista de brechas detectadas, prompt de ensayo simulado, exportar/importar `.json`.
 
